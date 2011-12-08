@@ -44,7 +44,7 @@ class DailymotionResolver(Plugin, UrlResolver, PluginSettings):
             return False
 
         fragment = re.search('"sequence",  "(.+?)"', html)
-        decoded_frag = urllib.unquote(sequence[0]).decode('utf8').replace('\\/','/')
+        decoded_frag = urllib.unquote(fragment.group(1)).decode('utf8').replace('\\/','/')
         r = re.search('"hqURL":"(.+?)"', decoded_frag)
         if r:
             stream_url = r.group(1)
@@ -78,6 +78,6 @@ class DailymotionResolver(Plugin, UrlResolver, PluginSettings):
 
 
     def valid_url(self, url, host):
-        return re.match('http://(www.)?dailymotion.com/video/[0-9A-Za-z]+', url) or 
+        return re.match('http://(www.)?dailymotion.com/video/[0-9A-Za-z]+', url) or \
                re.match('http://(www.)?dailymotion.com/swf/[0-9A-Za-z]+', url) or 'dailymotion' in host
 

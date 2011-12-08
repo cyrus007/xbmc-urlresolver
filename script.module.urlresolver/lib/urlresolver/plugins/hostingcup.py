@@ -76,5 +76,5 @@ class HostingcupResolver(Plugin, UrlResolver, PluginSettings):
             return False
 
     def valid_url(self, url, host):
-        return re.match('http://(www.)?hostingcup.net/[0-9A-Za-z]+', url) or 'hostingcup' in host
+        return re.match('http://(www.)?hostingcup.com/[0-9A-Za-z]+', url) or 'hostingcup' in host
 
