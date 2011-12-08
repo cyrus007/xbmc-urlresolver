@@ -50,6 +50,10 @@ elif mode == 'test':
                          {'title': '2gbhosting url'})
     addon.add_video_item({'host': '2gb-hosting.com', 'media_id': 'e1593e96e19f7ecced3778668e809c77/efc5d03968fbca6.avi.html'},
                          {'title': '2gbhosting media id'})
+    addon.add_video_item({'url': 'http://www.dailymotion.com/swf/k6Vt2rxUsqz2fk1cS36'},
+                         {'title': 'dailymotion url'})
+    addon.add_video_item({'host': 'dailymotion.com', 'media_id': 'k6Vt2rxUsqz2fk1cS36'},
+                         {'title': 'dailymotion media id'})
     addon.add_video_item({'url': 'http://www.divxstage.eu/video/eb20c352c3ccc'},
                          {'title': 'divxstage url'})
     addon.add_video_item({'host': 'divxstage.eu', 'media_id': 'eb20c352c3ccc'},
@@ -63,6 +67,10 @@ elif mode == 'test':
                          {'title': 'flashx url'})
     addon.add_video_item({'host': 'flashx','media_id': '1503'},
                          {'title': 'flashx media id'})
+    addon.add_video_item({'url': 'http://www.hostingcup.com/dvgmqfn1gf1k.html'},
+                         {'title': 'hostingcup url'})
+    addon.add_video_item({'host': 'hostingcup.com','media_id': 'dvgmqfn1gf1k'},
+                         {'title': 'hostingcup media id'})
     addon.add_video_item({'url': 'http://www.megaupload.com/?d=9T8NHCK4'},
                          {'title': 'megaupload url'})
     addon.add_video_item({'host': 'megaupload.com', 'media_id': '9T8NHCK4'},
