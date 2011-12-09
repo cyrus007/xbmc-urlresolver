@@ -39,7 +39,7 @@ class DailymotionResolver(Plugin, UrlResolver, PluginSettings):
         try:
             html = self.net.http_GET(web_url).content
         except urllib2.URLError, e:
-            common.addon.log_error('Dailymotion: got http error %d fetching %s' %
+            common.addon.log_error(self.name + '- got http error %d fetching %s' %
                                    (e.code, web_url))
             return False
 
@@ -49,13 +49,13 @@ class DailymotionResolver(Plugin, UrlResolver, PluginSettings):
         if r:
             stream_url = r.group(1)
         else:
-            message ='Dailymotion: 1st attempt at finding the stream_url failed'
+            message = self.name + '- 1st attempt at finding the stream_url failed'
             common.addon.log_debug(message)
             r = re.search('"sdURL":"(.+?)"', decoded_frag)
             if r:
                 stream_url = r.group(1)
             else:
-                message = 'Dailymotion: Giving up on finding the stream_url'
+                message = self.name + '- Giving up on finding the stream_url'
                 common.addon.log_error(message)
                 return False
         return stream_url
@@ -79,5 +79,5 @@ class DailymotionResolver(Plugin, UrlResolver, PluginSettings):
 
     def valid_url(self, url, host):
         return re.match('http://(www.)?dailymotion.com/video/[0-9A-Za-z]+', url) or \
-               re.match('http://(www.)?dailymotion.com/swf/[0-9A-Za-z]+', url) or 'dailymotion' in host
+               re.match('http://(www.)?dailymotion.com/swf/[0-9A-Za-z]+', url) or self.name in host
 

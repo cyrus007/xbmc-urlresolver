@@ -49,7 +49,7 @@ class ZshareResolver(Plugin, UrlResolver, PluginSettings):
         sPattern = '<iframe src="(http://www.zshare.net[^"]+)"'
         r = re.search(sPattern, html, re.DOTALL + re.IGNORECASE)
         if r:
-            iframe = r.group(1).replace(' ', '+')
+            iframe = r.group(1).replace(" ", "+")
             try:
                 html = self.net.http_GET(iframe).content
             except urllib2.URLError, e:
@@ -63,7 +63,7 @@ class ZshareResolver(Plugin, UrlResolver, PluginSettings):
             sPattern = 'file: "([^"]+)"'
             r = re.search(sPattern, html, re.DOTALL + re.IGNORECASE)
             if r:
-                stream_url = r.group(1).replace(' ', '+') + "?start=0" + '|user-agent=Mozilla/5.0 (X11; Linux i686) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/14.0.835.109 Safari/535.1'
+                stream_url = r.group(1).replace(" ", "+") + "?start=0" + '|user-agent=Mozilla/5.0 (X11; Linux i686) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/14.0.835.109 Safari/535.1'
 
 
             # get download url

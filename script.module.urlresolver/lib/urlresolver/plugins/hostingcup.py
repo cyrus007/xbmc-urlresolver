@@ -33,6 +33,7 @@ class HostingcupResolver(Plugin, UrlResolver, PluginSettings):
         p = self.get_setting('priority') or 100
         self.priority = int(p)
         self.net = Net()
+        self.pattern = 'http://(www.)?hostingcup.com/[0-9A-Za-z]+'
 
 
     def get_media_url(self, host, media_id):
@@ -40,7 +41,7 @@ class HostingcupResolver(Plugin, UrlResolver, PluginSettings):
         try:
             html = self.net.http_GET(web_url).content
         except urllib2.URLError, e:
-            common.addon.log_error('Hostingcup: got http error %d fetching %s' %
+            common.addon.log_error(self.name + '- got http error %d fetching %s' %
                                    (e.code, web_url))
             return False
 
@@ -49,7 +50,7 @@ class HostingcupResolver(Plugin, UrlResolver, PluginSettings):
         if r:
             p, k = r.groups()
         else:
-            common.addon.log_error('hostingcup: packed javascript embed code not found')
+            common.addon.log_error(self.name + '- packed javascript embed code not found')
             return False
 
         decrypted_data = unpack_js(p, k)
@@ -59,7 +60,7 @@ class HostingcupResolver(Plugin, UrlResolver, PluginSettings):
         if r:
             stream_url = r.group(1)
         else:
-            common.addon.log_error('hostingcup: stream url not found')
+            common.addon.log_error(self.name + '- stream url not found')
             return False
 
         return stream_url
@@ -76,5 +77,5 @@ class HostingcupResolver(Plugin, UrlResolver, PluginSettings):
             return False
 
     def valid_url(self, url, host):
-        return re.match('http://(www.)?hostingcup.com/[0-9A-Za-z]+', url) or 'hostingcup' in host
+        return re.match(self.pattern, url) or 'hostingcup' in host
 
