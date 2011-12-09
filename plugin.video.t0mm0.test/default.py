@@ -159,6 +159,10 @@ elif mode == 'test':
                          {'title': 'youtube url'})
     addon.add_video_item({'host': 'youtube.com', 'media_id': 'Q3VJOl_XeGs'},
                          {'title': 'youtube media id'})
+    addon.add_video_item({'url': 'http://www.zshare.net/video/9265541217c98a23/'},
+                         {'title': 'z-share url'})
+    addon.add_video_item({'host': 'zshare.net', 'media_id': '9265541217c98a23'},
+                         {'title': 'z-share media id'})
 
 elif mode == 'tv':
     browse = addon.queries.get('browse', False)
